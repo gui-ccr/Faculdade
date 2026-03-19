@@ -1,0 +1,99 @@
+-- Nome: Guilherme de Carvalho Cardoso Rodrigues
+-- Nome: Milena Ferreira da Silva
+
+-- Questão 01
+SELECT COUNT(*)
+FROM veiculo v
+	INNER JOIN modelo m ON (v.CodModelo = m.CodModelo)
+	INNER JOIN marca ma ON (m.CodMarca = ma.CodMarca)
+WHERE ma.Nome LIKE "Volkswagen";
+
+-- Questão 02
+SELECT COUNT(*)
+FROM veiculo v
+	INNER JOIN modelo m ON (v.CodModelo = m.CodModelo)
+	INNER JOIN categoria c ON (m.CodCategoria = c.CodCategoria)
+WHERE (
+	c.Nome LIKE "Hatch"
+	OR c.Nome LIKE "Sedan"
+	OR c.Nome LIKE "Pick-up"
+	OR c.Nome LIKE "SUV"
+);
+
+-- Questão 03
+SELECT COUNT(*)
+FROM infracao i
+	INNER JOIN tipoinfracao ti ON (i.CodTipoInfracao = ti.CodTipoInfracao)
+	INNER JOIN classificacao cl ON (ti.CodClassificacao = cl.CodClassificacao)
+WHERE cl.Nome LIKE "gravíssima";
+
+-- Questão 04
+SELECT v.Placa, co.Nome AS Cor, m.Nome AS Modelo, ma.Nome AS Marca
+FROM veiculo v
+	INNER JOIN cor co ON (v.CodCor = co.CodCor)
+	INNER JOIN modelo m ON (v.CodModelo = m.CodModelo)
+	INNER JOIN marca ma ON (m.CodMarca = ma.CodMarca)
+	INNER JOIN categoria c ON (m.CodCategoria = c.CodCategoria)
+WHERE c.Nome LIKE "Hatch"
+ORDER BY m.Nome, v.Placa;
+
+-- Questão 05
+SELECT ti.CodTipoInfracao, ti.Descricao, ti.Preco, cl.Nome AS Classificacao
+FROM tipoinfracao ti
+	INNER JOIN classificacao cl ON (ti.CodClassificacao = cl.CodClassificacao)
+ORDER BY cl.Nome, ti.Descricao;
+
+-- Questão 06
+SELECT COUNT(*)
+FROM infracao i
+	INNER JOIN veiculo v ON (i.Placa = v.Placa)
+	INNER JOIN modelo m ON (v.CodModelo = m.CodModelo)
+	INNER JOIN marca ma ON (m.CodMarca = ma.CodMarca)
+WHERE (ma.Nome LIKE "Fiat")
+	AND (i.DataInfracao >= "2009-04-05")
+	AND (i.DataInfracao <= "2016-07-31");
+
+-- Questão 07
+SELECT SUM(ti.Preco)
+FROM infracao i
+	INNER JOIN tipoinfracao ti ON (i.CodTipoInfracao = ti.CodTipoInfracao)
+	INNER JOIN classificacao cl ON (ti.CodClassificacao = cl.CodClassificacao)
+	INNER JOIN veiculo v ON (i.Placa = v.Placa)
+	INNER JOIN modelo m ON (v.CodModelo = m.CodModelo)
+	INNER JOIN categoria c ON (m.CodCategoria = c.CodCategoria)
+WHERE (c.Nome LIKE "Pick-up")
+	AND (cl.Nome LIKE "grave" OR cl.Nome LIKE "gravíssima");
+
+-- Questão 08
+SELECT v.Placa, m.Nome AS Modelo, ma.Nome AS Marca, co.Nome AS Cor, c.Nome AS Categoria, i.DataInfracao, ti.Preco, cl.Nome AS Classificacao
+FROM veiculo v
+	INNER JOIN modelo m ON (v.CodModelo = m.CodModelo)
+	INNER JOIN marca ma ON (m.CodMarca = ma.CodMarca)
+	INNER JOIN cor co ON (v.CodCor = co.CodCor)
+	INNER JOIN categoria c ON (m.CodCategoria = c.CodCategoria)
+	INNER JOIN infracao i ON (i.Placa = v.Placa)
+	INNER JOIN tipoinfracao ti ON (i.CodTipoInfracao = ti.CodTipoInfracao)
+	INNER JOIN classificacao cl ON (ti.CodClassificacao = cl.CodClassificacao)
+ORDER BY i.DataInfracao;
+
+-- Questão 09
+SELECT SUM(ti.Preco)
+FROM infracao i
+	INNER JOIN tipoinfracao ti ON (i.CodTipoInfracao = ti.CodTipoInfracao)
+	INNER JOIN classificacao cl ON (ti.CodClassificacao = cl.CodClassificacao)
+	INNER JOIN veiculo v ON (i.Placa = v.Placa)
+	INNER JOIN modelo m ON (v.CodModelo = m.CodModelo)
+	INNER JOIN categoria c ON (m.CodCategoria = c.CodCategoria)
+WHERE (c.Nome LIKE "Hatch")
+	AND (cl.Nome LIKE "grave" OR cl.Nome LIKE "gravíssima");
+
+-- Questão 10
+SELECT v.Placa, m.Nome AS Modelo
+FROM veiculo v
+	INNER JOIN modelo m ON (v.CodModelo = m.CodModelo)
+	INNER JOIN infracao i ON (i.Placa = v.Placa)
+	INNER JOIN tipoinfracao ti ON (i.CodTipoInfracao = ti.CodTipoInfracao)
+	INNER JOIN classificacao cl ON (ti.CodClassificacao = cl.CodClassificacao)
+WHERE (cl.Nome LIKE "leve")
+	AND (YEAR(i.DataInfracao) = 2013)
+ORDER BY i.DataInfracao;
