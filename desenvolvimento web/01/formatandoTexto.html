@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Meu site</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+
+      .conteudo {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+        font-family: sans-serif;
+        padding: 20px;
+      }
+
+      #lista-links {
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+        text-align: center;
+        padding: 20px;
+        border-style: groove;
+        border-color: black;
+      }
+
+      a {
+        color: black;
+        text-decoration: none;
+        font-family: sans-serif;
+      }
+
+      a:hover {
+        color: blue;
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="conteudo">
+      <header>
+        <h1>Eximia - Tech</h1>
+      </header>
+      <div id="lista-links">
+        <a href="01/index.html" target="_blank"> Site 01 - Filmes </a>
+        <br />
+        <a href="02/index.html" target="_blank"> Site 02 - Trab. a definir </a>
+      </div>
+      <img src="./EXIMIA-LOGO4-CP.png" width="250" height="100" />
+    </div>
+  </body>
+</html>
