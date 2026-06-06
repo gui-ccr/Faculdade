@@ -29,7 +29,6 @@
   padding: 0;
 }
 
-
 body {
   font-family: "Monda", sans-serif;
   background-color: var(--bg-main);
@@ -60,21 +59,25 @@ input:focus {
 .buttons {
   display: flex;
   align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
   gap: 0.5rem;
 }
 
-.btn {
+.bttn {
   background-color: var(--bg-profile);
   border: var(--border-color) solid 1px;
   border-radius: 10px;
-  padding: 0.5rem;
+  padding: 0.5rem 0.8rem;
   color: var(--text-muted2);
   cursor: pointer;
-  font-size: 0.7rem;
+  font-size: 0.75rem;
+  white-space: nowrap;
   transition: all 0.2s ease-in-out;
+  margin: 8px 0px;
 }
 
-.btn:hover {
+.bttn:hover {
   background-color: var(--bg-hover-btn);
   color: var(--text-white);
   border-color: var(--brand-green);
@@ -206,7 +209,18 @@ input:focus {
   border-radius: 1.5rem;
   padding: 1.2rem;
   box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.3);
+
   height: fit-content;
+  max-height: 42rem;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.sidebar-scroll-wrapper {
+  flex-grow: 1;
+  overflow-y: auto;
+  padding-right: .4rem;
 }
 
 .sidebar-configs .sidebar-header {
@@ -337,19 +351,126 @@ input:focus {
   margin-bottom: 14px;
 }
 
-.pastas-section p{
+.pastas-section p {
   font-size: 0.65rem;
   color: var(--text-muted2);
 }
 
-.pastas-section #pasta-input{
+.pastas-section #pasta-input {
   width: 90%;
 }
-.pastas-section #pasta-btn{
+.pastas-section #pasta-btn {
   font-size: 1rem;
   width: 40px;
 }
+.extra-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 14px;
+}
+.extra-item {
+  display: flex;
+  flex-direction: row;
+  gap: 0.3rem;
+  margin: 8px 0px;
+  width: 100%;
+}
+.extra-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 0.5rem;
+  padding: 0.3rem 0.6rem;
+  gap: 1rem;
+  width: 100%;
+}
 
+.extra-description-wrapper {
+  display: flex;
+  flex-direction: column;
+  font-size: small;
+}
+
+.extra-description-wrapper .extra-title {
+  color: var(--text-white);
+  font-weight: bold;
+
+}
+
+.extra-description-wrapper .extra-description {
+  font-size: 0.65rem;
+  color: var(--text-muted);
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 26px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  border-radius: 34px;
+  transition: background-color 0.3s ease;
+}
+
+.slider::before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.switch input:checked + .slider {
+  background-color: #4CAF50; 
+}
+
+.switch input:checked + .slider::before {
+  transform: translateX(24px);
+}
+
+.switch input:focus-visible + .slider {
+  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.4);
+}
+
+.sidebar-scroll-wrapper::-webkit-scrollbar {
+  width: 6px;             
+}
+
+.sidebar-scroll-wrapper::-webkit-scrollbar-track {
+  background: transparent;  
+}
+
+.sidebar-scroll-wrapper::-webkit-scrollbar-thumb {
+  background-color: var(--border-color); 
+  border-radius: 10px;       
+}
+
+.sidebar-scroll-wrapper::-webkit-scrollbar-thumb:hover {
+  background-color: var(--brand-green);  
+}
+
+/* final da sidebar  */
 
 @keyframes encolherNavbar {
   from {
