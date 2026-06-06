@@ -1,3 +1,6 @@
+/* =========================================
+   1. VARIÁVEIS GLOBAIS
+   ========================================= */
 :root {
   --bg-main: #0e1a1c; /* Fundo principal do site */
   --bg-container: #1a2329; /* Fundo da navbar e da sidebar */
@@ -12,12 +15,13 @@
 
   --text-white: #fff; /* Texto totalmente branco */
   --text-muted: #ffffff8c; /* Texto cinza/esbranquiçado com opacidade */
-  --text-muted2: #ffffff70; /* Texto totalmente branco */
+  --text-muted2: #ffffff70; /* Texto totalmente branco (nota: comentário original mantido) */
   --text-dark: #000; /* Texto preto (ícone da fábrica) */
 }
 
-/* estilos globais */
-
+/* =========================================
+   2. RESET & ESTILOS GLOBAIS
+   ========================================= */
 *,
 *::before,
 *::after {
@@ -39,6 +43,34 @@ svg {
   height: 1rem;
 }
 
+/* =========================================
+   3. SCROLLBARS GLOBAIS
+   ========================================= */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-color) transparent;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--border-color);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--brand-green);
+}
+
+/* =========================================
+   4. ELEMENTOS BASE
+   ========================================= */
 input {
   width: 100%;
   background-color: var(--bg-profile);
@@ -51,11 +83,15 @@ input {
 input::placeholder {
   color: var(--text-muted);
 }
+
 input:focus {
   outline: none;
   border-color: var(--brand-green);
 }
 
+/* =========================================
+   5. COMPONENTES (Botões, Switch, etc.)
+   ========================================= */
 .buttons {
   display: flex;
   align-items: center;
@@ -84,27 +120,84 @@ input:focus {
   box-shadow: 0 2px 10px 1px var(--brand-green-shadow);
 }
 
-/* NAVBAR */
+#active {
+  background-color: var(--bg-active);
+  color: var(--brand-green);
+}
 
+/* --- Switch Toggle --- */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 26px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  border-radius: 34px;
+  transition: background-color 0.3s ease;
+}
+
+.slider::before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.switch input:checked + .slider {
+  background-color: #4caf50;
+}
+
+.switch input:checked + .slider::before {
+  transform: translateX(24px);
+}
+
+.switch input:focus-visible + .slider {
+  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.4);
+}
+
+/* =========================================
+   6. LAYOUT PRINCIPAL
+   ========================================= */
 .main-container {
   min-height: 200vh;
 }
 
+/* =========================================
+   7. NAVBAR
+   ========================================= */
 .nav-container {
   display: flex;
   align-items: center;
   justify-content: center;
   position: sticky;
-
   background-color: var(--bg-container);
-
   width: 100%;
   max-width: 50rem;
   margin: 20px auto;
   padding: 0.4rem 2rem;
   z-index: 1000;
   top: 12px;
-
   border: var(--border-color) solid 1px;
   border-radius: 3.5rem;
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.5);
@@ -113,6 +206,7 @@ input:focus {
   animation-timeline: scroll(root);
   animation-range: 0px 100px;
 }
+
 .nav-content {
   display: flex;
   flex-direction: row;
@@ -196,20 +290,15 @@ input:focus {
   border-color: var(--brand-green);
 }
 
-#active {
-  background-color: var(--bg-active);
-  color: var(--brand-green);
-}
-
-/* SIDEBAR CONFIGS */
-
+/* =========================================
+   8. SIDEBAR & SEÇÕES
+   ========================================= */
 .sidebar-configs {
   background-color: var(--bg-sidebar);
   border: var(--border-color) solid 1px;
   border-radius: 1.5rem;
   padding: 1.2rem;
   box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.3);
-
   height: fit-content;
   max-height: 42rem;
   display: flex;
@@ -217,13 +306,7 @@ input:focus {
   overflow: hidden;
 }
 
-.sidebar-scroll-wrapper {
-  flex-grow: 1;
-  overflow-y: auto;
-  padding-right: .4rem;
-}
-
-.sidebar-configs .sidebar-header {
+.sidebar-header {
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -233,40 +316,59 @@ input:focus {
   margin-bottom: 4px;
 }
 
-.sidebar-configs .sidebar-header p {
+.sidebar-header p {
   font-size: 0.8rem;
   font-weight: bold;
   margin: 0;
   padding: 0 2px;
 }
 
-.sidebar-configs .sidebar-header svg {
+.sidebar-header svg {
   color: var(--brand-green);
   width: 1.25rem;
   height: 1.25rem;
 }
 
-.projeto-section {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  margin-bottom: 14px;
+.sidebar-scroll-wrapper {
+  flex-grow: 1;
+  overflow-y: auto;
+  padding-right: 0.4rem;
 }
 
+/* Sidebar Custom Scrollbar */
+.sidebar-scroll-wrapper::-webkit-scrollbar {
+  width: 6px;
+}
+
+.sidebar-scroll-wrapper::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sidebar-scroll-wrapper::-webkit-scrollbar-thumb {
+  background-color: var(--border-color);
+  border-radius: 10px;
+}
+
+.sidebar-scroll-wrapper::-webkit-scrollbar-thumb:hover {
+  background-color: var(--brand-green);
+}
+
+/* --- Seções Internas da Sidebar --- */
+.projeto-section,
+.framework-section,
+.linguagem-section,
+.estrutura-section,
+.pastas-section,
+.extra-section,
 .stack-section {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  margin: 14px 0px;
-}
-
-.framework-section {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
   margin-bottom: 14px;
 }
 
+
+/* Frameworks */
 .framework-group {
   display: flex;
   flex-direction: column;
@@ -288,22 +390,11 @@ input:focus {
   cursor: pointer;
   text-align: left;
 }
+
 .button-content-wrapper {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-}
-
-.radio-indicator {
-  width: 1rem;
-  height: 1rem;
-  border: var(--border-color) solid 1px;
-  border-radius: 50%;
-  background-color: transparent;
-}
-.radio-indicator.active {
-  background-color: var(--brand-green);
-  border-color: var(--brand-green);
 }
 
 .button-content {
@@ -311,16 +402,33 @@ input:focus {
   flex-direction: column;
   align-items: flex-start;
 }
+
 .button-title {
   font-size: 0.8rem;
   font-weight: bold;
   color: var(--text-white);
 }
+
 .button-description {
   font-size: 0.65rem;
   color: var(--text-muted);
 }
 
+/* Radio Indicator */
+.radio-indicator {
+  width: 1rem;
+  height: 1rem;
+  border: var(--border-color) solid 1px;
+  border-radius: 50%;
+  background-color: transparent;
+}
+
+.radio-indicator.active {
+  background-color: var(--brand-green);
+  border-color: var(--brand-green);
+}
+
+/* Tech Tags */
 .tech-tag {
   font-size: 0.65rem;
   background-color: var(--bg-tag);
@@ -330,27 +438,7 @@ input:focus {
   padding: 4px 10px;
 }
 
-.linguagem-section {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  margin-bottom: 14px;
-}
-
-.estrutura-section {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  margin-bottom: 14px;
-}
-
-.pastas-section {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  margin-bottom: 14px;
-}
-
+/* Seção de Pastas */
 .pastas-section p {
   font-size: 0.65rem;
   color: var(--text-muted2);
@@ -359,16 +447,13 @@ input:focus {
 .pastas-section #pasta-input {
   width: 90%;
 }
+
 .pastas-section #pasta-btn {
   font-size: 1rem;
   width: 40px;
 }
-.extra-section {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  margin-bottom: 14px;
-}
+
+/* Seção Extra */
 .extra-item {
   display: flex;
   flex-direction: row;
@@ -376,6 +461,7 @@ input:focus {
   margin: 8px 0px;
   width: 100%;
 }
+
 .extra-content {
   display: flex;
   align-items: center;
@@ -395,7 +481,6 @@ input:focus {
 .extra-description-wrapper .extra-title {
   color: var(--text-white);
   font-weight: bold;
-
 }
 
 .extra-description-wrapper .extra-description {
@@ -403,75 +488,9 @@ input:focus {
   color: var(--text-muted);
 }
 
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 50px;
-  height: 26px;
-}
-
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  border-radius: 34px;
-  transition: background-color 0.3s ease;
-}
-
-.slider::before {
-  position: absolute;
-  content: "";
-  height: 20px;
-  width: 20px;
-  left: 3px;
-  bottom: 3px;
-  background-color: white;
-  border-radius: 50%;
-  transition: transform 0.3s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-.switch input:checked + .slider {
-  background-color: #4CAF50; 
-}
-
-.switch input:checked + .slider::before {
-  transform: translateX(24px);
-}
-
-.switch input:focus-visible + .slider {
-  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.4);
-}
-
-.sidebar-scroll-wrapper::-webkit-scrollbar {
-  width: 6px;             
-}
-
-.sidebar-scroll-wrapper::-webkit-scrollbar-track {
-  background: transparent;  
-}
-
-.sidebar-scroll-wrapper::-webkit-scrollbar-thumb {
-  background-color: var(--border-color); 
-  border-radius: 10px;       
-}
-
-.sidebar-scroll-wrapper::-webkit-scrollbar-thumb:hover {
-  background-color: var(--brand-green);  
-}
-
-/* final da sidebar  */
-
+/* =========================================
+   9. ANIMAÇÕES (KEYFRAMES)
+   ========================================= */
 @keyframes encolherNavbar {
   from {
     transform: translateY(0) scale(1);
