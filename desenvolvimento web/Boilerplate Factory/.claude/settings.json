@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(docker rm *)",
+      "Bash(curl -sS -o /dev/null -w \"HTTP_STATUS:%{http_code}\\\\n\" http://localhost:8082/)",
+      "Bash(MSYS_NO_PATHCONV=1 docker run --rm boilerplate-factory-test cat /docker-entrypoint.d/30-tune-worker-processes.sh)",
+      "Bash(MSYS_NO_PATHCONV=1 docker run --rm nginx:alpine cat /etc/nginx/nginx.conf)",
+      "Bash(curl -sS -o /dev/null -w \"HTTP_STATUS:%{http_code}\\\\n\" http://localhost:8083/)",
+      "Bash(MSYS_NO_PATHCONV=1 docker exec bf-test4 ps aux)",
+      "Bash(curl -sS -o /dev/null -w \"HTTP_STATUS:%{http_code}\\\\n\" http://localhost:8084/)"
+    ]
+  }
+}
