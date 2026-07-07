@@ -1,6 +1,6 @@
 
 /**
- * DESAFIO 92: Calculadora de Conta de Energia
+ * DESAFIO: Calculadora de Conta de Energia
  *
  * ENTRADAS:
  * 1. Total de kW/h consumido no mês.
@@ -33,7 +33,7 @@
  * - Valor Final da Conta
  */
 import javax.swing.JOptionPane;
-import java.util.Scanner;
+
 
 public class Fundamentos {
 
