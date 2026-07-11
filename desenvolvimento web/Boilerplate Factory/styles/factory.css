@@ -568,7 +568,7 @@ input:focus {
   to {
     transform: translateY(-6px) scale(0.93);
     width: auto;
-    padding: 0.18rem 1.5rem;
+    padding: 0.22rem 1.8rem;
   }
 }
 
